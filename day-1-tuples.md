@@ -4,7 +4,9 @@ A tuple acts in exactly the same way in both F# and C#, but F# provides a simple
 
 ```let tuple = 1, 2```
 
-Getting the values out of the tuple is a little different to C#, although in C# you can use the deconstruction syntax to do similar:
+You probably noticed the use of let, which you may recognise from other languages as the variable declaration. It is F#'s equivalent of `var`, but an important difference is that the variable is immutable by default.
+
+Getting the values out of the tuple is a little different to C#, although in C# you can use the deconstruction syntax to do similar to:
 
 ```let one, two = tuple```
 
