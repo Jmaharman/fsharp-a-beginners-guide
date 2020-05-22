@@ -1,3 +1,5 @@
+# Day 1 - Tuples
+
 First we'll start with what you already know from C#, and today that is a tuple.
 
 A tuple acts in exactly the same way in both F# and C#, but F# provides a simpler syntax to it:
