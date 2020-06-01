@@ -7,7 +7,7 @@ Neither are ideal as they have problems of their own. For example, any ```int```
 Discriminated Unions can solve both of the above problems in a simple to use syntax.
 The syntax is fairly simple, you state the name of the discriminated union, and then a pipe ```|``` character followed by each item's label.
 
-```
+```fsharp
 type PreferredContactMethod =
     | Email
     | Mobile
@@ -16,7 +16,7 @@ type PreferredContactMethod =
 
 The above example is similar to an Enum, except the only possible values for that union are the ones I have defined. That's not all though:
 
-```
+```fsharp
 type PreferredContactMethod =
     | Email of string
     | Mobile of string
@@ -27,7 +27,7 @@ This time we've stated that each of our labels should hold data ```of``` a strin
 
 You can place any types you wish inside the label, for example our Address Record Type from yesterday can be used to store the address details for the letter.
 
-```
+```fsharp
 type PreferredContactMethod =
     | Email of string
     | Mobile of string
@@ -36,7 +36,7 @@ type PreferredContactMethod =
 
 The flip side of that is that you can use a Discriminated Union inside a record type too:
 
-```
+```fsharp
 type Customer = {
     FirstName : string
     LastName : string
@@ -46,7 +46,7 @@ type Customer = {
 
 Discriminated unions are no different to Record Types with regards to equality, we can compare two different variables in exactly the same way as before:
 
-```
+```fsharp
 let preferEmail = PreferredContactMethod.Email "john@johnharman.co.uk"
 let preferEmailDuplicate = PreferredContactMethod.Email "john@johnharman.co.uk"
 
@@ -69,7 +69,7 @@ printf "Are these customers equal? %b" (customer = customerDuplicate)
 
 So what would happen if we tried to compare the simple type value of email, a string, with the descriminated union value? It would fail.
 
-```
+```fsharp
 let email = "john@johnharman.co.uk"
 let preferEmail = PreferredContactMethod.Email email
 
@@ -83,7 +83,7 @@ One way to handle the above comparison would be to put them both in the same uni
 
 Everything I've done up until now always includes the discriminated union name, as well as the label. It turns out F# only needs that discriminated union name if the labels clash with other labels / types. Otherwise it knows the label belongs to the union, and as such you don't need the union's name at all:
 
-```
+```fsharp
 let preferEmail = Email "john@johnharman.co.uk"
 ```
 [Try the code](https://try.fsharp.org/#?code=C4TwDgpgBAggJnAThAziqBeKBvAsAKCiKgBkBLAOwgEYoAuKFYRSgcwOKgCUB7AQzj1GzNh2IBhMqCFMWFdoWIAFHk3E840BrNGKi6gK4VmIGSPkEAvgQKhIUJcgBmERMjjrjfAMbAAshDAABYamGJEAD5QAKIAtnxkADZQPE7CcgqcUX48AEZJ0KnpulmkgcCuKWnwSKgoNvh20OIGTDyxlVh4elAAYmSITAByfB1mGeGkfMOjWsUWPZ7APv6BIYIMjhAubhAePF6+AcEaVg2JgVBgzq5xCclYd0lQAEQAVjxBFAACH19BfEQ8QoADpvDwQQYANYvAgXYBXG6IJ6JAAiBjAiTI3j4FUwMXiz3enx+fwoAKBfFB4MhMIa10owDSLxgyCgwVQ0CMZAO6AgAEcDHxEgB+KAAUlyLygAAprttboSHoiFcilejMdjcRAAJTnS7eVrAdqdHCTfqDYAjMZYF4AKRJsJ6JGmVtm+JeAAlAcCnZwlitjut8fKdiizvh4VBDW0OogNVicXiuuaBjMba8HV8-cQXenoLbvZSKDn9Adlkc1qEsKHFfcE1qKhGCAzjMzWdAOShoDHjXG+YLhWLJdKZb2TYh8eO4w2k7qgA&html=DwCwLgtgNgfAsAKAAQqaApgQwCb2ag4CdMTJcMABwFp0BHAVwEsA3AXgCIBhAewDsw6AdQAqAT0roOSAMb9BAzoIAeYAPThoAbhkhMAJwDOJNgzAAzagA4OeQhqy5EhAEY9sYu6mBq3HvD6asEA&css=Q)

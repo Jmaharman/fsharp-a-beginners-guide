@@ -4,7 +4,7 @@ In F# and functional programming in general, data and behaviour are kept separat
 
 We'll cover each item in turn, but today's focus will be on record types. Record types are a super powered equivalent of C# POCO objects.
 
-```
+```csharp
 public class Address
 {
     public string Line1 { get; set; }
@@ -16,7 +16,7 @@ public class Address
 
 Here is an F# Record Type equivalent:
 
-```
+```fsharp
 type Address = {
     Line1 : string
     City : string
@@ -31,7 +31,7 @@ The C# POCO can be instantiated with as many or as few props as you want it to b
 
 For example, to create an F# record you do it as so.
 
-```
+```fsharp
 let address = {
     Line1 = "221b Baker St"
     City = "London"
@@ -49,7 +49,7 @@ Open the above example again and try to set a property on the address, you'll se
 
 Penultimate feature, structural equality, meaning that when comparing record types it checks every value in the object before deciding if they are equal or not. Meaning two different instances that have the same values will be considered to be equal to one another.
 
-```
+```fsharp
 let address = {
     Line1 = "221b Baker St"
     City = "London"
@@ -74,11 +74,11 @@ Again you can do the above with C#, but now your code for this simple POCO has b
 
 Let's finish off with a problem that immutability brings, how can I store a new version of an address without needing create the whole object again? We use the with syntax:
 
-```
+```fsharp
 let nextDoor = {
     address with
         Line1 = "221a Baker Street"
-    }
+}
 ```
 [Try the code](https://try.fsharp.org/#?code=C4TwDgpgBAggJnAThAziqBeKBvAsAKCiKgBkBLAOwgEYoAuKFYRSgcwOKgGEzR7HmbDsQAKAeyZcxcaAyYsK7QsSkBXCsxD95Q-AF8CBADYRgUAIYJkaTDmFFyVWlgBEAJjfUARlABC5gGsIRCgAZWAXe25eLVcSMQo4BMjlInFJaWhXADkAdVoANgANAFEUzjUNRFioFwBVAGkUg3xjUygqAA9gABExMRCsPFSLK1R0AHdeAAsozkcaW3dPcz9A4LDmCFNy4ha2syT4JHGAWXNgAGNprNGTmywu3v7EAjAFYAAzWoBSLxcoEcxmhzlcbkA&html=DwCwLgtgNgfAsAKAAQqaApgQwCb2ag4CdMTJcMABwFp0BHAVwEsA3AXgCIBhAewDsw6AdQAqAT0roOSAMb9BAzoIAeYAPThoAbhkhMAJwDOJNgzAAzagA4OeQhqy5EhAEY9sYu6mBq3HvD6asEA&css=Q)
 

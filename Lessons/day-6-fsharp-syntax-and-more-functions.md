@@ -9,7 +9,7 @@ F# uses whitespace indentation to know what lines of code belong to that functio
 Multi-line functions, or even variable assignments must start the definition on the first line, but the content of that assignment / function must start indented on the next line, with all other lines of that function following after with the same indentation.
 For example:
 
-```
+```fsharp
 let add x y = x + y
 let multiply m z = m * z
 let oneLineResult = 3 |> multiply 5 |> add 2 // All on one line like before, no problem
@@ -22,7 +22,7 @@ let multiLineResult =
 
 As I said, functions and assignments have the same syntactic rules, so if I wrote my doNothing function from Day 5 as multi-line, it would look like so:
 
-```
+```fsharp
 // Originally
 let doNothingOneLine() = printf "Running doNothing" ; ()
 // New version
@@ -38,7 +38,7 @@ In C#, you can't do anything except return a value, however in F# you can define
 
 Remember that functions are first class citizens, which means you can define functions too. You may wonder how it it differentiates between one functions implementation, and the parent function? Indentation.
 
-```
+```fsharp
 let toUpper value =
     let upperCaseChar c =
         System.Char.ToUpper(c)
@@ -52,7 +52,7 @@ Because we're always expecting an ouput from a function, if we aren't using that
 
 F# will warn you when this happens. Try and modify the above code like so:
 
-```
+```fsharp
 let toUpper value =
     let upperCaseChar c =
         System.Char.ToUpper(c)
@@ -64,7 +64,7 @@ printf "Stop shouting %s" (toUpper "will ward")
 
 You can solve this two ways. The first would be to use let and assign it to a variable, which is probably what you want most of the time. Sometimes you don't need the functions output, and in those cases you can use the ignore function, to discard the value and remove the compiler error. Modify the appropriate line as such:
 
-```
+```fsharp
 String.map upperCaseChar value |> ignore
 ```
 

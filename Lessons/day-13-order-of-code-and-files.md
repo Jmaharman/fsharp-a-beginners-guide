@@ -3,7 +3,7 @@ A light lesson for the day, but no less important.
 
 You may not have realised so far, but the order that you write your code means everything. Generally speaking any code that you wish to reference should be declared above it in the order of the project. For example, if we rehash the Address record type from the other day, but declare the SUs below it, the compiler will error.
 
-```
+```fsharp
 type Address = {
     Line1 : Line1
     Road : Road
@@ -21,7 +21,7 @@ type Country = Country of string
 
 As you'll see when you go to the above, it doesn't compile. If you really really wanted to have the other types defined below instead you can use the and keyword, but from what I've seen it's not that common and I don't think it helps readability.
 
-```
+```fsharp
 type Address = {
     Line1 : Line1
     Road : Road

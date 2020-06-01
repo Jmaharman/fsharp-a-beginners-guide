@@ -2,7 +2,7 @@
 
 In our example of Address last week we had a type with each string representing different parts of it:
 
-```
+```fsharp
 type Address = {
     Line1 : string
     City : string
@@ -17,19 +17,19 @@ Single case unions to the rescue!
 
 The syntax is very similar to a discriminated Union, however instead of using a pipe character to separate the OR options, you only give it one. As follows:
 
-```
+```fsharp
 type Country = Country of string
 ```
 
 They act in a very similar way to discriminated unions too because the label once again acts as a wrapper for your data. Like so:
 
-```
+```fsharp
 let england = Country "England"
 ```
 
-To get the value out again can be done in a few ways. 
+To get the value out again can be done in a few ways.
 
-```
+```fsharp
 let (Country englandStr) = england
 printf "%A" england
 printf "%s" englandStr
@@ -38,7 +38,7 @@ printf "%s" englandStr
 
 We could create a module to help define a function to unwrap it for us, which can be cleaner at times
 
-```
+```fsharp
 module Country =
     let value (Country c) = c
 let england = Country "England"
@@ -50,7 +50,7 @@ You can also use pattern matching too, but that's a bit contrived for a simple s
 
 As with discriminated unions you cannot compare a single union case with a variable of it's inner data, you would have to wrap or unwrap it first
 
-```
+```fsharp
 let england = Country "England"
 printf "%b" (england = "England") // Compiler Error
 let englandStr = Country.value england
@@ -60,7 +60,7 @@ printf "%b" (englandStr = "England")
 
 It goes without saying that equality is structural once more:
 
-```
+```fsharp
 let england = Country "England"
 let england2 = Country "England"
 printf "%b" (england = england2)
@@ -68,7 +68,7 @@ printf "%b" (england = england2)
 
 Let's update our Address example to use single case unions:
 
-```
+```fsharp
 type Line1 = Line1 of string
 type City = City of string
 type PostCode = PostCode of string
@@ -91,7 +91,7 @@ let address = {
 }
 
 let newAddress = {
-    address with 
+    address with
         City = address.Country // Won't compile because City is not compat with Country
     }
 ```

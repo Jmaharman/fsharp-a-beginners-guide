@@ -2,7 +2,7 @@
 
 Today's lesson we will start on functions. Functions are a first class citizen in F#, which they are meant to be in C# too, but in a lesser way. In C# there are Method Groups which are the functions you define on your classes, static or otherwise. You also have Func<T> and Action<T>, which is what you pass into methods like Linq Select, Where, statements. A Method Group is different to a Func or Action, although it can be cast to one when necessary. You all know how to make a method group in C#
 
-```
+```csharp
 public class Example
 {
     private int Sum(int x, int y)
@@ -30,7 +30,7 @@ public class Example
 
 In F# a function is very much a first class citizen, of which there are two types, but we'll start with the one you'd probably find easier to read, although it is used less, for reasons I'll explain tomorrow as this has taken too long going over C# stuff :wink:
 
-```
+```fsharp
 // Function definition
 let sum(x, y) = x + y
 let result = sum(1, 2)
@@ -41,7 +41,7 @@ printf "%d" result
 
 You may notice that there is no need to define the types of those arguments, that is because the F# compiler can extrapolate the types you want based on the fact you are using the + operator on them. That may be scary at first, but don't worry, when looking at it in an IDE it will tell you what the signature is, often shown above in something similar to this:
 
-```
+```fsharp
 int * int -> int
 let sum(x,y) = x + y
 ```

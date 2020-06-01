@@ -3,13 +3,13 @@
 Let's define an expression out loud so that everyone is clear. An expression is a combination of values and functions to create a new value, i.e. your code will always return something.
 We can obviously write expressions in C#, we've done many in this channel over the last 5 days. Just roll out the lambda syntax, avoid the braces and away you go expression ahoy:
 
-```
+```csharp
 Func<string, string> concat = (a, b) => a + b
 ```
 
 What C# also lets you write is Statements. A statement is when you have code that will execute but return nothing. Notably a MethodGroup returning void, or an Action.
 
-```
+```csharp
 Action<string> log => msg => Console.WriteLine(msg)
 ```
 
@@ -26,7 +26,7 @@ Note that Unit does not exist in the BCL or C#, it is a F# type. Mediator implem
 
 Here is the equivalent to the above C# code, we have to explicitly return unit, which in F# is represented in code as open and close brackets:
 
-```
+```fsharp
 let log msg = printf "%s" msg ; () // string -> unit
 log "Hey there"
 ```
@@ -35,14 +35,14 @@ Great, so we know that a function must have an output, and the lowest common den
 
 The next question is how can you compose something that has zero parameters. For example:
 
-```
+```fsharp
 let doNothing() = ()
 ```
 
 You may be able to guess once I give you the signature for the above unit -> unit
 As you can see, we have an input after all! It's our good friend Unit. Great news, now we have an input and an output we can compose two functions easily.
 
-```
+```fsharp
 let doNothing() = printf "Running doNothing" ; () // unit -> unit
 let result = doNothing() // Run by itself
 printf "Finished"

@@ -16,7 +16,7 @@ In F# there are three common ways to layout your types and modules, but I think 
 
 Below is an example of defining some types, and then some modules. We'll then use the functions we've defined to filter a list of customers based on their contact preference. I would recommend reading the below example at try.fsharp.org because it gives you a tiny bit of syntax highlighting, not much but it's something to help break down this large block of text.
 
-```
+```fsharp
 // Define our types up front, and because declaring these types is so light in syntax
 // you would declare many in one file, normally related to one another of course
 type Address = {
@@ -48,7 +48,7 @@ module PreferredContactMethod =
 module Customer =
     let findAllEmailContacts contacts = // List<Customer> -> List<Customer>
         let customerPrefersEmail customer = // Customer -> bool
-            customer.ContactMethod |> PreferredContactMethod.isEmail 
+            customer.ContactMethod |> PreferredContactMethod.isEmail
         contacts |> List.filter customerPrefersEmail
 
 // Let's make some customers

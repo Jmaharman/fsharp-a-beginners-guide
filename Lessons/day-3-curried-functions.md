@@ -2,7 +2,7 @@
 
 Yesterday you saw the below function (now presented with signature alongside it):
 
-```
+```fsharp
 let sum(x, y) = x + y // int * int -> int
 ```
 
@@ -12,7 +12,7 @@ The ```*``` in the function signature denotes a tuple, hence the name, and in th
 
 Now let's look at the more widely used syntax for functions in F#, the Curried Function.
 
-```
+```fsharp
 let sum x y = x + y // int -> int -> int
 ```
 
@@ -20,7 +20,7 @@ I'm sure your first thought is "WTF is that!". I admit it does take a bit of get
 
 So why would F# developers use a Curried Function over a Tupled Function? The secret lies in the fact that a Curried Function does not need to have all it's arguments provided to it at once, because when you omit an argument a new function is returned instead, with the remaining arguments as inputs, for example:
 
-```
+```fsharp
 let sum x y = x + y // int -> int -> int
 let addFive = sum 5 // int -> int
 let result = addFive 10
@@ -31,7 +31,7 @@ The add5 function has now got the value 5 baked in as the first parameter to the
 
 If you considered the equivalent in C#, it could look something like this using Local Functions:
 
-```
+```csharp
 int Sum(int x, int y) {
     return x + y;
 }
