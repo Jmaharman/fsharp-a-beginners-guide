@@ -6,7 +6,7 @@ Put simply, pattern matching is if / else on steroids *. C# has had a form of pa
 
 You can use it to assign a value to a variable, or as the last step before returning a value from your expression. The syntax pattern matching is as simple as:
 
-```
+```fsharp
 match [variable] with
 | [matching pattern] -> [output]
 | [as many patterns as required] -> [output]
@@ -14,7 +14,7 @@ match [variable] with
 
 The key point here is to make sure that the branches of logic, start inline or indent further than the match x with syntax. The below example would throw a compiler error at you, try it and see what the compiler says.
 
-```
+```fsharp
 let isTrue bln = match bln with
     | true -> "Yes"
     | false -> "No"
@@ -22,7 +22,7 @@ let isTrue bln = match bln with
 
 Let's create a very simple function to show the above
 
-```
+```fsharp
 let isTrue bln =
     match bln with
     | true -> "Yes"
@@ -36,9 +36,9 @@ The above is called the Constant pattern, because we are matching the value of t
 
 Another useful pattern is called the identifier pattern. You can associate this with your understanding of discriminated unions, where by you state the label of what you are trying to match.
 
-We can do this for an Option, which is a discriminated union of 
+We can do this for an Option, which is a discriminated union of
 
-```
+```fsharp
 // Some | None, like so:
 let isOptionTrue bln =
     match bln with
@@ -54,7 +54,7 @@ printf "%s" (isOptionTrue (Some false))
 
 Or to prove the point that it will work for any discriminated union we'll use one of our earlier examples:
 
-```
+```fsharp
 type Address = {
     Line1 : string
     Road : string
@@ -88,7 +88,7 @@ sendMessageToCustomer (Letter {
 
 The one thing I've not told you about pattern matching is that it must be exhaustive. The same is true in C# too, except that in C# it cheats by making you add a default / discard branch. In F# it can often (not always) work out whether you have covered all options. Let's say the business decides we should be able to contact our users via Skype, now you head back into your code to add the Skype option and try to run the code:
 
-```
+```fsharp
 type PreferredContactMethod =
     | Email of string
     | Mobile of string
@@ -100,13 +100,13 @@ You should notice a compiler error telling you that you've not handled the Skype
 
 Sometimes it's possible that you only care about certain scenarios, in those cases it may be tempting to use wildcard pattern and simply ignore anything you've not handled like so:
 
-```
+```fsharp
 let sendMessageToCustomer contactMethod =
     match contactMethod with
     | Email email -> printf "Sending an email to: %s" email
     | Mobile mobNumber -> printf "Sending text to: %s" mobNumber
     | Letter address -> printf "Sending letter to: %s %s, %s" address.Line1 address.Road address.PostCode
-    | _ -> printf "Don't worry about it" 
+    | _ -> printf "Don't worry about it"
 ```
 
 The problem with doing this is that you have now lost the exhaustive pattern matching available to you. If we added another contact method to our list, it would fall into the above and wouldn't warn you that you should handle that. Use the wildcard safely.

@@ -4,7 +4,7 @@ Last time we started our journey on pattern matching. While I am not going to co
 
 Last week we discussed the constant pattern, which is as it sounds. You are matching against constants:
 
-```
+```fsharp
 let isTrue bln =
     match bln with
     | true -> "Yes"
@@ -13,7 +13,7 @@ let isTrue bln =
 
 And we had the identifier pattern, where by you state a discriminated union label you wish to match against, our example being:
 
-```
+```fsharp
 let sendMessageToCustomer contactMethod =
     match contactMethod with
     | Email email -> printf "Sending an email to: %s" email
@@ -25,7 +25,7 @@ In the identifier pattern you'll notice the value we unwrap from the label is as
 
 Another benefit of assigning a variable to what you are matching means that you can apply a _when_ guard:
 
-```
+```fsharp
 let rand = new System.Random();
 match rand.Next(0, 20) with
 | a when a >= 10 -> printf "Higher than 10: %d" a
@@ -35,17 +35,17 @@ match rand.Next(0, 20) with
 
 A word of warning about the when guard. It comes at a cost, because the compiler will _not_ look inside the when guard to work out if all eventualities are handled, and as such the following would tell you that you have not handled all eventualities, even though we know it has been.
 
-```
+```fsharp
 let rand = new System.Random();
 match rand.Next(0, 20) with
 | a when a = 10 -> printf "Higher than 10: %d" a
-| a when a <= 10 -> printf "Lower than or equal to 10: %d" a 
+| a when a <= 10 -> printf "Lower than or equal to 10: %d" a
 ```
 [Try the code](https://try.fsharp.org/#?code=DYUwLgBATghgdgEwgXgnEB3CBlAngZzBAFsA6AJXgQHtiAKASgG4BYAKHeJjAGMALaFVIA5EAA8wdAAwAaCACYpDCBgCWYPuwA+EGCr4g4ulBACMUiAFoAfBAAOUVXDAAzCACIAEqoDmBqBAa8GZSAFwQAKQI7rraxhgGRnoAPKjmVrYOTq4eADLUGCABQUbUASAAjgCuMMCB1CHhUTEwQA&html=DwCwLgtgNgfAsAKAAQqaApgQwCb2ag4CdMTJcMABwFp0BHAVwEsA3AXgCIBhAewDsw6AdQAqAT0roOSAMb9BAzoIAeYAPThoAbhkhMAJwDOJNgzAAzagA4OeQhqy5EhAEY9sYu6mBq3HvD6asEA&css=Q)
 
 Record pattern - there is now an equivalent of this in C#, it allows you to match against part of the record:
 
-```
+```fsharp
 type Contact = {
     FirstName : string
     LastName : string
@@ -55,7 +55,7 @@ let whoIsIt person =
     match person with
     | { FirstName = "John" ; LastName = "Harman" } -> printf "John is the best"
     | { LastName = "McEnroe" } -> printf "You cannot be serious!"
-    | _ -> printf "Not sure who this is: %A" person 
+    | _ -> printf "Not sure who this is: %A" person
 
 let john = { FirstName = "John" ; LastName = "Harman" }
 whoIsIt john
@@ -70,7 +70,7 @@ whoIsIt imposter
 
 NULL pattern - Yes the dreaded null. Only really necessary when dealing with BCL libraries, rather than fsharp libraries. Useful none the less.
 
-```
+```fsharp
 let isItNull (str : string) =
     match str with
     | null -> printf "Is a null"
@@ -83,7 +83,7 @@ isItNull "This ain't no null"
 
 One last one for the day, the Tuple pattern. Pattern matching only allows for a single input, however we can get around this with a tuple. Simply supply the values you wish to match with a comma between them, and in the patterns be sure to supply one match per comma.
 
-```
+```fsharp
 let optionEqualOrGreaterThan a b =
     match a, b with
     | Some x, Some y when x >= y -> printf "true"

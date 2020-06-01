@@ -3,7 +3,7 @@
 Up until now we've managed to avoid specifying any types in our F# code. I imagine that makes you feel uneasy, after all you are used to seeing what the function has as inputs and outputs as a glance.
 That being said, people also felt uneasy when C# first introduced the var keyword:
 
-```
+```csharp
 // Explicit variable type, the go to
 int age = 20;
 // To inferred type, what sort of horrible-ness is this!!
@@ -16,14 +16,14 @@ The F# compiler is like the above, but on steroids*. While that is an overly sim
 
 Your code will often drop hints as to what you are expecting based on what your functions are doing. For example:
 
-```
+```fsharp
 let getLength name = name |> String.length
 ```
 
 The fact that String.length expects a string means that name should be a string.
 The above F# book gives a very good example of code that doesn't give the compiler enough information to infer the type of name:
 
-```
+```fsharp
 let getLength name = sprintf "Name is %d letters." name.Length
 ```
 
@@ -33,7 +33,7 @@ Sometimes we do need define your parameter types up front, this common for class
 
 To resolve the compiler error above you can specify the type as such, by wrapping them in brackets and stating the type.
 
-```
+```fsharp
 let getLength (name : string) = sprintf "Name is %d letters." name.Length
 ```
 
@@ -41,7 +41,7 @@ Previously I've mentioned that F# can infer that any parameter either side of th
 
 If you actually want to define a function for a float, you would do it as such:
 
-```
+```fsharp
 let sumFloat (a : float) b = a + b // float -> float -> float
 
 printf "%f" (sumFloat 1.2 1.2)
@@ -52,7 +52,7 @@ Notice only the first parameter required wrapping, it could then infer that the 
 
 Inference has it's obvious benefits, but there are even more powerful benefits you won't wouldn't have even thought about until the compiler does it for you.
 
-```
+```fsharp
 let concat item1 item2 = [ item1 ; item2 ] // 'a -> 'a -> List<'a>
 ```
 
@@ -62,7 +62,7 @@ Above I've declared a function that expects 2 parameters and returns them in a l
 
 The above may seem obvious, but it does this with non trivial examples too. :siren: This code is pointless, but it shows generics being applied again :siren:
 
-```
+```fsharp
 let arbritraryFunction map item1 item2 = map item1 item2 // ('a -> 'b -> 'c) -> 'a -> 'b -> 'c
 ```
 
@@ -74,15 +74,15 @@ When using that implementation 'a, 'b and 'c could all be of the same time of co
 
 Perhaps you would find the Tupled version of the same function easier to read (notice the slight difference in the function signature, hint: *)
 
-```
-let arbritraryFunction func item1 item2 = func(item1, item2) // ('a * 'b -> 'c) -> 'a -> 'b -> 'c 
+```fsharp
+let arbritraryFunction func item1 item2 = func(item1, item2) // ('a * 'b -> 'c) -> 'a -> 'b -> 'c
 ```
 
 When your code isn't compiling as you'd expected, it can be daunting at first. In functional languages they often say to "follow the types". What does that mean? Essentially take your time and think through the functional signatures, check what you are expecting and what the compiler says it is expecting. I often find similar issues in C# when working with inferred generics especially with abstracts and implementations.
 
 Here's another example ripped straight out the book, you'll need to look at this next set of code in the try.fsharp.org tool so you can see the compiler error
 
-```
+```fsharp
 let sayHello(someValue) =
     let innerFunction(number) =
         if number > "hello" then "Isaac"

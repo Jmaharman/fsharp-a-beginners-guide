@@ -14,7 +14,7 @@ Yesterday we discussed how we can wrap primitive types with SUs to help avoid bu
 
 This function can do this in a variety of ways, the first and simplest would be to return a None if the email address is invalid. That doesn't give us a particularly great user experience though, it would be better if we could provide an error message. To do this I'll use Result<TOk, TError>, it is an F# type which allows you to be more explicit than Some or None by providing a different result type on the Good path compared to the Bad path.
 
-```
+```fsharp
 type EmailAddress = private EmailAddress of string
 
 module EmailAddress =
@@ -32,7 +32,7 @@ module EmailAddress =
             Error (sprintf "\"%s\" is not a valid Email Address" str)
         else
             Ok (EmailAddress str)
-            
+
  // We know, 100%, that this function receives a valid UN number, no extra checks required
 let emailCustomer email =
     printfn "Emailed customer: \"%s\"" (EmailAddress.value email)
@@ -56,7 +56,7 @@ Here are a few more examples of encoding business logic into our types.
 
 A list that must have at least one item:
 
-```
+```fsharp
 type AtLeastOne<'a> = private AtLeastOne of 'a list
 module AtLeastOne =
     let create inputList =
@@ -71,7 +71,7 @@ printf "%A" (AtLeastOne.create [1])
 
 A string that cannot be longer than 10 characters in length:
 
-```
+```fsharp
 type String10 = private String10 of string
 module String10 =
     let create (str : string) =

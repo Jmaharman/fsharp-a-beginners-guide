@@ -16,7 +16,7 @@ In fact as a rule of thumb I've noticed that commas are only ever used when a tu
 
 If I only wanted one of the values out of the tuple, then I would use discard (underscore) to ignore the second value
 
-```let onlyOne,_ = tuple```
+```let onlyOne, _ = tuple```
 
 Day one complete, congratulations. Feel free to play around with the above here:
 
