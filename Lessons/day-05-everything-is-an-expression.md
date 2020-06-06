@@ -7,7 +7,7 @@ We can obviously write expressions in C#, we've done many in this channel over t
 Func<string, string> concat = (a, b) => a + b
 ```
 
-What C# also lets you write is Statements. A statement is when you have code that will execute but return nothing. Notably a MethodGroup returning void, or an Action.
+What C# also lets you write is Statements. A statement is when you have code that will execute but return nothing. Notably a `MethodGroup` returning `void`, or an `Action`.
 
 ```csharp
 Action<string> log => msg => Console.WriteLine(msg)
@@ -16,22 +16,22 @@ Action<string> log => msg => Console.WriteLine(msg)
 The question is, if F# only allows you to write expressions, how do you write a function that would be void in C#?
 Answer: It doesn't, because everything is an expression and therefore it always returns something. I'm sure there is some deeper meaningful reason in the mathematics that F# is built upon as to why this is, but in laymen's terms it comes down to compossibility.
 
-How can you chain two functions together that return nothing in an expression? You can't, it's impossible. So what do we do? The answer is Unit.
+How can you chain two functions together that return nothing in an expression? You can't, it's impossible. So what do we do? The answer is `Unit`.
 
-Unit acts as a placeholder when no other value exists or is needed.
+`Unit` acts as a placeholder when no other value exists or is needed.
 
 In fact each of us has used a Unit at some point already in our C# code because that is a type that Mediatr uses when you have execute a command that returns no value. While it may display this to us as a handler that returns void, under the hood that then defers to a handler that returns a Unit. The reason they did this was to simplify their own codebase.
 
 Note that Unit does not exist in the BCL or C#, it is a F# type. Mediator implemented their own Unit-like type.
 
-Here is the equivalent to the above C# code, we have to explicitly return unit, which in F# is represented in code as open and close brackets:
+Here is the equivalent to the above C# code, we have to explicitly return `unit`, which in F# is represented in code as open and close brackets:
 
 ```fsharp
 let log msg = printf "%s" msg ; () // string -> unit
 log "Hey there"
 ```
 
-Great, so we know that a function must have an output, and the lowest common denominator for that in F# is a unit.
+Great, so we know that a function must have an output, and the lowest common denominator for that in F# is a `unit`.
 
 The next question is how can you compose something that has zero parameters. For example:
 
@@ -59,17 +59,13 @@ The more you see function signatures, especially of functions you write yourself
 
 Nesting of function signatures in function signatures can become a little confusing, but that is where you should pay close attention to the brackets that denote the start and end of the function definition. It can remind me of some of the more confusing generic type signatures in C#.
 
-Input unit ; Output unit
-```unit -> unit```
-Input string ; Output: unit
-```string -> unit```
-Input: Tuple of int & string ; Output: string
-```int * string -> string```
-Input: int, Function accepting int and returning int ; Output: int
-```int -> (int -> int) -> int```
-Input: int ; Output: Function accepting int and returning int
-```int -> (int -> int)```
-Generics- Input: two objects of type a' as separate arguments ; Output: List<a>
-```a' -> a' -> List<a'>```
+|                          Input                           |                  Output                  |          Signature           |
+| :------------------------------------------------------: | :--------------------------------------: | :--------------------------: |
+|                           unit                           |                   unit                   |        `unit -> unit`        |
+|                          string                          |                   unit                   |       `string -> unit`       |
+|                  Tuple of int & string                   |                  string                  |   `int * string -> string`   |
+|      int, Function accepting int and returning int       |                   int                    | `int -> (int -> int) -> int` |
+|                           int                            | Function accepting int and returning int |    `int -> (int -> int)`     |
+| Generics- two objects of type `a'` as separate arguments |                `List<a>`                 |    `a' -> a' -> List<a'>`    |
 
 [Try today's code](https://try.fsharp.org/#?code=DYUwLgBAJg9gcjMALAlgOwOYAoCUEC8AsAFARkQAOATumAGYQBEASgK5probTyKqaMS5CLhIlQkKiADOrYJHw8EyLqOIlqtBowBi6FNKQgog9cQkQAxkgCG6Y8xlyFIvAB8AfEr5cIn7yqYfl6wyvwYYsSaaPRMepyGxoxAA&html=DwCwLgtgNgfAsAKAAQqaApgQwCb2ag4CdMTJcMABwFp0BHAVwEsA3AXgCIBhAewDsw6AdQAqAT0roOSAMb9BAzoIAeYAPThoAbhkhMAJwDOJNgzAAzagA4OeQhqy5EhAEY9sYu6mBq3HvD6asEA&css=Q)

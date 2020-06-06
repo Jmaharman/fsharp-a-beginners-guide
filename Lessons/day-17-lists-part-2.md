@@ -2,13 +2,13 @@
 
 Yesterday we looked at how to prepend to a list, and why we prepend rather than append. Let's work through some more examples of common behaviour with lists.
 
-Concatenating lists is simple enough, we can use the @ operator or the List.concat function.
+Concatenating lists is simple enough, we can use the `@` operator or the `List.concat` function.
 
 ```fsharp
 let names = ["john";"peter";"paul"]
 let moreNames = ["don";"phillip"]
 let combinedLists = names @ moreNames
-let combinedAlt = List.concat [ names ; moreNames ] 
+let combinedAlt = List.concat [ names ; moreNames ]
 printf "%A" combinedLists
 printf "%A" combinedAlt
 ```
@@ -23,9 +23,9 @@ let firstItem = List.head ["peter";"paul"]
 printf "%s" firstItem
 ```
 
-Just like C#, if you try to get First() out of an empty list, it will throw an exception.
+Just like C#, if you try to get `First()` out of an empty list, it will throw an exception.
 
-If you are unsure as to whether there is an item in the list you can use tryHead, which gives you a Some / None:
+If you are unsure as to whether there is an item in the list you can use `tryHead`, which gives you a `Some` / `None`:
 
 ```fsharp
 let head = List.tryHead ["peter";"paul"]
@@ -35,7 +35,7 @@ printf "%b" headNone.IsNone
 ```
 [Try the code](https://try.fsharp.org/#?code=DYUwLgBAFiCGAmEC8EAyBLAzmAdGATgJ4ASciA2gEQBWA9lAHaUDclA7usMJQLoCwAKFCQYCAHK0GIZBGBYwAHmz50DAOYA+HAFEAtgAcwhCAB8NaeXiKkEg-SoZgAZhEoBSAIKVoZOw+eubgBG3qLwElI4AJKYESBAA&html=DwCwLgtgNgfAsAKAAQqaApgQwCb2ag4CdMTJcMABwFp0BHAVwEsA3AXgCIBhAewDsw6AdQAqAT0roOSAMb9BAzoIAeYAPThoAbhkhMAJwDOJNgzAAzagA4OeQhqy5EhAEY9sYu6mBq3HvD6asEA&css=Q)
 
-The thing about having an Some or None is that it is likely you're going to need to do something with it. If that is the case you could use an if statement, but more likely you would use pattern matching.
+The thing about having an `Some` or `None` is that it is likely you're going to need to do something with it. If that is the case you could use an if statement, but more likely you would use pattern matching.
 
 If we are doing the above, let's skip to the chase and go straight to pattern matching with the List pattern:
 
@@ -69,7 +69,7 @@ I tend to think of the list pattern as replicating the list structure that you w
 
 As you can imagine the number of combinations is endless.
 
-There is another common practice with lists, which is where you match on the head and the tail. We've already seen the use of head above, this is the first item in the list. So what is tail? Well if you think back to our Cons, it's a tuple of T * List<T>, therefor the tail is the remaining list. That tail may be empty, but it could be another Cons, which will once again have a T * List<T>. Using the head and the tail, you can recurse through a list item by item.
+There is another common practice with lists, which is where you match on the head and the tail. We've already seen the use of head above, this is the first item in the list. So what is tail? Well if you think back to our Cons, it's a tuple of `T * List<T>`, therefor the tail is the remaining list. That tail may be empty, but it could be another Cons, which will once again have a `T * List<T>`. Using the head and the tail, you can recurse through a list item by item.
 
 Before we jump into the below, I should quickly explain that in F#, if you would like to recursively call a function you must explicitly state this to be the case. To do this you add the ```rec``` keyword after ```let``` but before the function name. I'll tag the order that our code executes, and explain each point in turn.
 
@@ -85,7 +85,7 @@ let takeRegister students =
     match students with
     | [] -> printf "No-one present" // 1
     | _ -> // 2
-        printf "Start register" // 3 
+        printf "Start register" // 3
         callRegister students // 4
 
 takeRegister []
@@ -113,7 +113,7 @@ let students = [| "peter" ; "paul" ; "don" ; "phillip"; "john" |]
 printf "%A" students
 ```
 
-F# also has seq, which is an equivalent to C#'s IEnumerable. I won't go into this now but it's worth knowing that it exists and it's purpose. As long as you know where using IEnumerable in C# makes sense, you'll probably get the gist of seq in F# too.
+F# also has seq, which is an equivalent to C#'s `IEnumerable`. I won't go into this now but it's worth knowing that it exists and it's purpose. As long as you know where using `IEnumerable` in C# makes sense, you'll probably get the gist of seq in F# too.
 
 Each type of collection has it's own set of methods, you can access these the same as you would access any function for a type, by looking on the module itself.
 

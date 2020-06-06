@@ -1,6 +1,6 @@
 # Day 22: Function type aliases
 
-You thought I was done with type aliases didn't you? Didn't you! Well I'm not, because I didn't show you how to alias a function. Hopefully the idea of this is no surprise, functions are a first class citizen in F# after all. Let's bring back the CubeDimensions alias, and use it in a function signature:
+You thought I was done with type aliases didn't you? Didn't you! Well I'm not, because I didn't show you how to alias a function. Hopefully the idea of this is no surprise, functions are a first class citizen in F# after all. Let's bring back the `CubeDimensions` alias, and use it in a function signature:
 
 ```fsharp
 type CubeDimensions = double * double * double
@@ -9,7 +9,7 @@ type CalculateVolume = CubeDimensions -> double
 
 We've not seen a function signature for a while, hopefully can still remember the structure. If not here's a quick recap. The last item in the list is always the output, everything before that is an input with each item being separated by a ```->```. A function must have _at least one_ input, and *must have one* output.
 
-Let's expand on the above and say that the CubeDimensions aren't provided to us semantically, but as a string. We'll need a function to parse a string and output a CubeDimension, we can define that as such:
+Let's expand on the above and say that the `CubeDimensions` aren't provided to us semantically, but as a string. We'll need a function to parse a string and output a `CubeDimension`, we can define that as such:
 
 ```fsharp
 type ParseCubeDimensions = string -> CubeDimensions
@@ -23,13 +23,13 @@ For example, as I've written the function signature above I realise I've not han
 type ParseCubeDimensions = string -> CubeDimensions option
 ```
 
-The problem with option is that my client would like feedback as to why the parsing failed. This means that my output naturally becomes a Result<Ok, Error>:
+The problem with option is that my client would like feedback as to why the parsing failed. This means that my output naturally becomes a `Result<Ok, Error>`:
 
 ```fsharp
 type ParseCubeDimensions = string -> Result<CubeDimensions, ParseError>
 ```
 
-What should our ParseError look like? We can start hashing out some useful scenarios that would be good to feedback to the user pretty quickly.
+What should our `ParseError` look like? We can start hashing out some useful scenarios that would be good to feedback to the user pretty quickly.
 
 ```fsharp
 type ParseErrors =

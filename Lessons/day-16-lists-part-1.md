@@ -27,7 +27,7 @@ If you look carefully above, you'll notice that we don't append an item to the l
 
 The beauty of the above is that we haven't modified anything, it's a very efficient way of expanding a data structure. We continue to use the original list underneath, and thus only add a small amount of memory.
 
-If you want to add an item into the middle of the list, fsharp be able to re-use some of the list, but the other half would need to be created from scratch:
+If you want to add an item into the middle of the list, F# be able to re-use some of the list, but the other half would need to be created from scratch:
 
 ```fsharp
 let emptyList = Empty
@@ -36,7 +36,7 @@ let peterAndPaul = Cons ("peter", paul)
 let johnBetweenPeterAndPaul = Cons ("peter", Cons ("john", paul))
 ```
 
-Above you'll see I have to create a new Cons for peter, as well as john, but I can re-use paul. This is why you would avoid inserting items into the middle of a list in F#, because it creates more allocations than prepending. It's not that you can't, but there is probably a better tool for the job, such as the BCL implentation, which is called ResizeArray in F#.
+Above you'll see I have to create a new Cons for peter, as well as john, but I can re-use paul. This is why you would avoid inserting items into the middle of a list in F#, because it creates more allocations than prepending. It's not that you can't, but there is probably a better tool for the job, such as the BCL implentation, which is called `ResizeArray` in F#.
 
 Creating a list in F# is very simple, you will have seen it before now but not necessarily realised it is a list. Let's create a list and prepended an item to it using the Cons (```::```) operator (see, I told you we'd mention Cons)
 
@@ -64,10 +64,10 @@ let newResult =
 
 If you played around with the code above you may wonder how to get a specific item out of the list. For example, how do you get the 3rd item? You can use slicing:
 
-```
+```fsharp
 let names = ["john";"peter";"paul";"don";"phillip"]
 printf "%A" names.[0] // Index 0
-printf "%A" names.[1..2] // Index 1 through to 2 
+printf "%A" names.[1..2] // Index 1 through to 2
 printf "%A" names.[..4] // Everything up until 4
 printf "%A" names.[4..] // Everything after 4
 printf "%A" names.[5..100] // No exception thrown if items not found

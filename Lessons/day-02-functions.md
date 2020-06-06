@@ -1,6 +1,6 @@
 # Day 2 - Functions
 
-Today's lesson we will start on functions. Functions are a first class citizen in F#, which they are meant to be in C# too, but in a lesser way. In C# there are Method Groups which are the functions you define on your classes, static or otherwise. You also have Func<T> and Action<T>, which is what you pass into methods like Linq Select, Where, statements. A Method Group is different to a Func or Action, although it can be cast to one when necessary. You all know how to make a method group in C#
+Today's lesson we will start on functions. Functions are a first class citizen in F#, which they are meant to be in C# too, but in a lesser way. In C# there are Method Groups which are the functions you define on your classes, static or otherwise. You also have `Func<T>` and `Action<T>`, which is what you pass into methods like Linq Select, Where, statements. A Method Group is different to a `Func` or `Action`, although it can be cast to one when necessary. You all know how to make a method group in C#
 
 ```csharp
 public class Example

@@ -2,7 +2,7 @@
 
 Before I start on what it is, let's discuss a problem it solves.
 
-We have the following calculation, 2 + 3 * 5, and we'd like to represent that in code. Let's define a few C# functions to help do that.
+We have the following calculation, `2 + 3 * 5`, and we'd like to represent that in code. Let's define a few C# functions to help do that.
 
 ```csharp
 int Add(int x, int y) => x + y
@@ -16,7 +16,7 @@ var result = Add(2, Multiply(3, 5)); // Output: 17
 ```
 
 While it is correct, it's not as easy to read, because as you scan left to right you are seeing that you need to Add something, but then you can't add that until you have got the output of the multiplication.
-In our heads we'd do the multiplication first, but we can't do that first unless we got the result first and passed that into Add. Like so:
+In our heads we'd do the multiplication first, but we can't do that first unless we got the result first and passed that into `Add`. Like so:
 
 ```csharp
 var multiplyResult = Multiply(3, 5);
