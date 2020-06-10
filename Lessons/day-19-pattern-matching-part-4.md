@@ -11,9 +11,9 @@ let (|Int|_|) (input: string) =
     | _ -> None
 ```
 
-An obvious difference when compared to the Single-case Pattern is the _ in the label list. The label between the first two pipes represents the Some outcome, and the _ represents the None outcome. Within the function body you then use Some and None to provide the two outcomes.
+An obvious difference when compared to the Single-case Pattern is the _ in the label list. The label between the first two pipes represents the `Some` outcome, and the `_` represents the `None` outcome. Within the function body you then use `Some` and `None` to provide the two outcomes.
 
-When you come to use the Single-case partial in a match you do not need to worry about stating Some / None yourself. F# unwraps this for you. If it is Some the label will match and you will be expected to use the variable. For the none scenario a match is not found, and you are required to handle the match through another branch:
+When you come to use the Single-case partial in a match you do not need to worry about stating `Some` / `None` yourself. F# unwraps this for you. If it is Some the label will match and you will be expected to use the variable. For the none scenario a match is not found, and you are required to handle the match through another branch:
 
 ```fsharp
 let printInt input =
@@ -52,7 +52,7 @@ let printType input =
 
 Now onto the Paramaterized partial. It has the same purpose as the Single-case Partial Pattern, the difference this time is that we can provide it with one or more parameters. This is hard to represent as a single functional signature, so I'll show you a few examples
 
-```
+```fsharp
 'T -> 'P -> Option<'A> // Single additional parameter
 'T -> 'P1 -> 'P2 -> Option<'A> // Two additional parameters
 'T -> 'P1 -> 'P2 -> 'P3 -> Option<'A> // Three additional parameters

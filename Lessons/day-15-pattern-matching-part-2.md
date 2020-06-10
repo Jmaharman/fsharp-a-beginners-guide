@@ -68,7 +68,7 @@ whoIsIt imposter
 ```
 [Try the code](https://try.fsharp.org/#?code=C4TwDgpgBAwg9gO2AQwMbCgXigbwLABQUxUAYgJYBOAzsAHLIC20AXFLZeQgOaElQAZZLQbMobDl14EAvoUIAbCBgDuACzgBJapoyQaiLHxKNkwVGqj7qhleWBrjxAD64yVEU2jYARACk4NQQfKABuQWF6LywoHwAJZEpTYKgZKABaAD4rTiQAM1iAoKhyaigHaAAjCFofJyhXHAjPMV8AWVQAUQRKOAgQtKycrmACnwBNOABXKFRkBAQ4DGr2CE5p6gBCOqISVwB9DOywXNHYuiX2KcpodThytVKS6jYAUgBBEOtDeQIlDAAVoEEDEmhQaFFWoVgSFwkIWt5YgkkvMBoQ7tpdFAgUFfv8oIxUFxeoiwR5IYj-DCws0KTEfB1uiS0QQMToMITiX08coSowwHBaGtQe4IaJKTiUnDIuL6cjkiy2VjyPzBcA1oQgA&html=DwCwLgtgNgfAsAKAAQqaApgQwCb2ag4CdMTJcMABwFp0BHAVwEsA3AXgCIBhAewDsw6AdQAqAT0roOSAMb9BAzoIAeYAPThoAbhkhMAJwDOJNgzAAzagA4OeQhqy5EhAEY9sYu6mBq3HvD6asEA&css=Q)
 
-NULL pattern - Yes the dreaded null. Only really necessary when dealing with BCL libraries, rather than fsharp libraries. Useful none the less.
+NULL pattern - Yes the dreaded `null`. Only really necessary when dealing with BCL libraries, rather than F# libraries. Useful none the less.
 
 ```fsharp
 let isItNull (str : string) =

@@ -50,9 +50,9 @@ printAsString 1 // Notice how it still expects an int
 ```
 [Try the code](https://try.fsharp.org/#?code=LAKANgpgLgBAFAHwHIFcC2AjCAnAggZwGUpsBLAOwHMEBKeCgBxVgC4YKo6Bed8pqAHQAVAPbEyVODVChIsBhKgFxFSvFSYcykqpj4S3GAo4AzGACIApPnN6SMkMfJKiOqjACMQA&html=DwCwLgtgNgfAsAKAAQqaApgQwCb2ag4CdMTJcMABwFp0BHAVwEsA3AXgCIBhAewDsw6AdQAqAT0roOSAMb9BAzoIAeYAPThoAbhkhMAJwDOJNgzAAzagA4OeQhqy5EhAEY9sYu6mBq3HvD6asEA&css=Q)
 
-As you can see the printAsString input still expects an integer, the inline pattern matching helps us to avoid the need to do pattern matching lower down in the function call.
+As you can see the `printAsString` input still expects an integer, the inline pattern matching helps us to avoid the need to do pattern matching lower down in the function call.
 
-If we wanted access to both the original value and the pattern matched value, we can wrap that inline pattern matching with "as [variableName]" and get access to both:
+If we wanted access to both the original value and the pattern matched value, we can wrap that inline pattern matching with "`as [variableName]`" and get access to both:
 
 ```fsharp
 let printWithBoth ((NumberAsString str) as number) =

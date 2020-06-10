@@ -1,6 +1,6 @@
 # Day 14: Pattern Matching (part 1)
 
-Put simply, pattern matching is if / else on steroids *. C# has had a form of pattern matching for a while, it was very limited at first. In C# 8.0 they gave it a boost in the arm, which you can [read about here](https://docs.microsoft.com/en-us/archive/msdn-magazine/2019/may/csharp-8-0-pattern-matching-in-csharp-8-0) if you are unaware of the new functionality.
+Put simply, pattern matching is if / else on steroids*. C# has had a form of pattern matching for a while, it was very limited at first. In C# 8.0 they gave it a boost in the arm, which you can [read about here](https://docs.microsoft.com/en-us/archive/msdn-magazine/2019/may/csharp-8-0-pattern-matching-in-csharp-8-0) if you are unaware of the new functionality.
 
 \* You remember this reference? Top marks for those that do.
 
@@ -36,7 +36,7 @@ The above is called the Constant pattern, because we are matching the value of t
 
 Another useful pattern is called the identifier pattern. You can associate this with your understanding of discriminated unions, where by you state the label of what you are trying to match.
 
-We can do this for an Option, which is a discriminated union of
+We can do this for an `Option`, which is a discriminated union of
 
 ```fsharp
 // Some | None, like so:

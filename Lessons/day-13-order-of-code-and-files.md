@@ -1,7 +1,7 @@
 # Day 13: Order of code and files
 A light lesson for the day, but no less important.
 
-You may not have realised so far, but the order that you write your code means everything. Generally speaking any code that you wish to reference should be declared above it in the order of the project. For example, if we rehash the Address record type from the other day, but declare the SUs below it, the compiler will error.
+You may not have realised so far, but the order that you write your code means everything. Generally speaking any code that you wish to reference should be declared above it in the order of the project. For example, if we rehash the `Address` record type from the other day, but declare the SUs below it, the compiler will error.
 
 ```fsharp
 type Address = {

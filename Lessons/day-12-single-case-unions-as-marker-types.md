@@ -2,17 +2,17 @@
 
 Single case unions can help us to ensure the integrity of our data whenever we need it. Emails are an easy example of this because an email is represented as a string, but not every string is an email address. Let's say I need to write a function that will email a customer, one of the parameters I would accept is the 'To' email address.
 
-In my email function I'll create a new instance of System.Net.Mail.MailMessage, which requires MailAddress as such:
+In my email function I'll create a new instance of `System.Net.Mail.MailMessage`, which requires `MailAddress` as such:
 
 ```MailAddress from = new MailAddress("ben@contoso.com", "Ben Miller");```
 
-MailAddress isn't particularly honest with us because if we gave it a badly formed email address, it will throw an exception at runtime. It would be nice if it gave us a heads up, without needing to delve into the documentation. If we knew at compile time that the possibility of an invalid email address is on the table, and that we should handle that fact.
+`MailAddress` isn't particularly honest with us because if we gave it a badly formed email address, it will throw an exception at runtime. It would be nice if it gave us a heads up, without needing to delve into the documentation. If we knew at compile time that the possibility of an invalid email address is on the table, and that we should handle that fact.
 
 I know what you're thinking, all email addresses _should_ be validated on the way into the system, so it shouldn't be a problem. In software lots of things _should_ happen, but things don't always work out the way we expect and we don't realise that until someone hits that path of the logic at a later date.
 
 Yesterday we discussed how we can wrap primitive types with SUs to help avoid bugs at compile time. It turns out that an SU can help us here too. We can create a function that can act as the gateway to creating a valid email address.
 
-This function can do this in a variety of ways, the first and simplest would be to return a None if the email address is invalid. That doesn't give us a particularly great user experience though, it would be better if we could provide an error message. To do this I'll use Result<TOk, TError>, it is an F# type which allows you to be more explicit than Some or None by providing a different result type on the Good path compared to the Bad path.
+This function can do this in a variety of ways, the first and simplest would be to return a None if the email address is invalid. That doesn't give us a particularly great user experience though, it would be better if we could provide an error message. To do this I'll use `Result<TOk, TError>`, it is an F# type which allows you to be more explicit than Some or None by providing a different result type on the Good path compared to the Bad path.
 
 ```fsharp
 type EmailAddress = private EmailAddress of string
@@ -50,7 +50,7 @@ contactForm "john@johnharman.co.uk"
 
 I know this is not the best example in the world but hopefully you can consider the above concept and apply it to a project you are working on where a string is not simply a string. It's great to know that if you use an SU as a marker type, with the appropriate validation being done at the creation of the type, you can be sure it is safe to work with and hopefully it will be more obvious to anyone working on the codebase what that type is, more than simply being a string.
 
-These SUs don't have to be strings, they could be any type. Imagine a Customer type, and the concept of a PriorityCustomer. Perhaps only certain features of your producte are available to PriorityCustomers. If you write the necessary business logic into the creation of that SU, then you can be sure that any developer trying to use your function knows that the customer must be a PriorityCustomer, and the decision on whether that customer is a priority customer or not is declared in one place.
+These SUs don't have to be strings, they could be any type. Imagine a `Customer` type, and the concept of a `PriorityCustomer`. Perhaps only certain features of your producte are available to `PriorityCustomers`. If you write the necessary business logic into the creation of that SU, then you can be sure that any developer trying to use your function knows that the customer must be a `PriorityCustomer`, and the decision on whether that customer is a priority customer or not is declared in one place.
 
 Here are a few more examples of encoding business logic into our types.
 
